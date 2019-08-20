@@ -1,0 +1,45 @@
+package ejercicios;
+
+public class Ejercicios {
+
+    public static int minMov( String cad1, String cad2){
+        return minMov(cad1,cad2,Math.max(cad1.length(), cad2.length()), 0, 0 );
+    }
+    
+    private static int minMov(String cad1, String cad2, int menor, int i, int mov){
+        if(mov < menor){
+            if(i == cad2.length()){
+                menor = mov;
+                return menor;
+            }
+            else{
+                if(cad1.charAt(i) == cad2.charAt(i))
+                   return minMov(cad1, cad2, menor, i + 1, mov);
+                else{
+                    //Sustitución
+                    int n = minMov(cad1.substring(0, i) + 
+                            cad2.substring(i, i +1) + cad1.substring(i + 1), cad2, menor, i + 1, mov + 1 );
+                    if(n < menor)
+                        menor = n;
+                    else{
+                        //Quitar
+                        n = minMov(cad1.substring(0, i) + cad1.substring(i + 1),
+                                cad2, menor, i + 1, mov + 1 );
+                        if(n < menor)
+                            menor = n;
+                        else{
+                            n = minMov(cad1.substring(0, i) +cad2.substring(i, i +1)+ cad1.substring(i),
+                                cad2, menor, i + 1, mov + 1 );
+                            if(n < menor)
+                                menor = n;
+                        }
+                    }
+                }
+            }
+        }
+        return mov;
+    }
+    public static void main(String[] args) {
+        System.out.println(minMov("dia", "diana"));
+    }
+}
