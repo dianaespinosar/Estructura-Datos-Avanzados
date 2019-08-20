@@ -47,11 +47,7 @@ public class Tarea01{
 
 
   public static void main(String[] args) {
-    Scanner lee = new Scanner(System.in);
-    String nom, resultado;
-		System.out.println("Ingresa nombre del archivo"); 
-		nom = lee.nextLine();
-		resultado = leeArchivo(nom);
+      		resultado = leeArchivo(args[0]);
 		if (resultado == null) 
 			System.out.println("\nError");
 		else
