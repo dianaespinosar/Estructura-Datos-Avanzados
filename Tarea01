@@ -14,46 +14,65 @@ public class Tarea01{
 
 
 import java.io.File;
-import java.util.Scanner;
-public class Tarea01{
 
-  public static String leeArchivo (String nom) {
+import java.util.Scanner;
+
+public class Tarea01Lee{
+
+  	public static String leeArchivo (String nom) {
+
 		String salida;
+
 		try {
+
 			File file = new File(nom);
 			Scanner leeArch = new Scanner(file);
-      String frase;
+
 			StringBuilder resultado = new StringBuilder();
+
 			int a,b,n;
-			n = lee.nextInt();
-      for(int i = 0; i < n; i++){
-        a = lee.nextInt();
-        b = lee.nextInt();
-        resultado.append(a+b).append("\n");
+
+			n = leeArch.nextInt();
+			if(n == 1)
+				resultado.append("Suma de 1 pareja:\n");
+			else
+				resultado.append("Suma de " + n + " parejas:\n");
+     			
+			for(int i = 0; i < n; i++){
+
+        			a = leeArch.nextInt();
+
+        			b = leeArch.nextInt();
+
+        			resultado.append("Suma de pareja " + (i+1) + ": ").append(a+b).append("\n");
 			}
-				
-			}
-			
+			salida = resultado.toString();
 			leeArch.close();
-			
-		}
-		
-		catch(Exception e) {
+
+		}catch(Exception e) {
+
 		 salida = "No se puedo abrir.";
+
 		}
-		
+
 		return salida.toString();
+
 	}
 
 
-  public static void main(String[] args) {
-      		resultado = leeArchivo(args[0]);
+  	public static void main(String[] args) {
+
+		String nombreArchivo = args[0];
+      		String resultado = leeArchivo(nombreArchivo);
+		
+
 		if (resultado == null) 
-			System.out.println("\nError");
-		else
-			System.out.println("Sumas:\n" + resultado);
-	}
-    
-  }
-}
 
+			System.out.println("\nError");
+
+		else
+			System.out.println(resultado);
+
+	}
+
+}
