@@ -2,46 +2,91 @@ package ejercicios;
 
 public class Ejercicios {
 
-    public static int minMov( String cad1, String cad2){
+   public static int minMov( String cad1, String cad2){
+
         return minMov(cad1,cad2,Math.max(cad1.length(), cad2.length()), 0, 0 );
+
     }
+
     
+
     private static int minMov(String cad1, String cad2, int menor, int i, int mov){
+
         if(mov < menor){
-            System.out.println(mov + " menor a " + menor);
-            if(i == cad2.length()){
-                menor = mov;
-                return menor;
+
+            System.out.println("Movimientos: " + mov + " menor a " + menor);
+            if(i == cad1.length() || i == cad2.length()){
+                System.out.println("Cad1 = " + cad1.length());
+                System.out.println("Cad2 = " + cad2.length());
+                System.out.println("Mov antes de quitar lo extra = " + mov);
+                mov = mov + Math.abs((cad1.length()-cad2.length()));
+                System.out.println("Movimientos después de quitar lo extra = " + mov);
+                return mov;
             }
+
             else{
-                System.out.println("i = " + i);
-                if(cad1.charAt(i) == cad2.charAt(i))
-                   return minMov(cad1, cad2, menor, i + 1, mov);
-                else{
-                    //Sustitución
-                    int n = minMov(cad1.substring(0, i) + 
-                            cad2.substring(i, i +1) + cad1.substring(i + 1), cad2, menor, i + 1, mov + 1 );
-                    if(n < menor)
-                        menor = n;
-                    else{
-                        //Quitar
-                        n = minMov(cad1.substring(0, i) + cad1.substring(i + 1),
-                                cad2, menor, i + 1, mov + 1 );
-                        if(n < menor)
-                            menor = n;
-                        else{
-                            n = minMov(cad1.substring(0, i) +cad2.substring(i, i +1)+ cad1.substring(i),
-                                cad2, menor, i + 1, mov + 1 );
-                            if(n < menor)
-                                menor = n;
-                        }
-                    }
+
+                System.out.println("i = " + i + "\nCaracter en cad1 es: " + cad1.charAt(i));
+
+                if(cad1.charAt(i) == cad2.charAt(i)){
+                    System.out.println("Caracteres iguales: " + cad1.charAt(i));
+                   return minMov(cad1, cad2, menor, (i + 1), mov);
                 }
+                else{
+                    System.out.println("No son iguales los caracteres");
+                    System.out.println("Movimientos hasta el momento son " + mov);
+                    //Sustitución
+                    System.out.println("Sustitución de " + cad1.charAt(i) );
+                    int n = minMov(cad1.substring(0, i) + 
+
+                            cad2.substring(i, i +1) + cad1.substring(i + 1), cad2, menor, i + 1, mov + 1 );
+                    System.out.println("n = " + n  + "\nMenor = " + menor);
+                    if(n < menor){
+                        menor = n;
+                        System.out.println("Menor cambio a " + menor);
+                        
+                    }
+
+                    //else{
+                        
+                        //Quitar
+                        System.out.println("Quitar a " + cad1.charAt(i));
+                        System.out.println("movimientos = " + mov);
+                        n = minMov(cad1.substring(0, i) + cad1.substring(i + 1),
+
+                                cad2, menor, i, mov + 1 );
+                        System.out.println("n = " + n + "\nMenor = " + menor);
+                        if(n < menor)
+
+                            menor = n;
+
+                        //else{
+                            //Agregar
+                            System.out.println("Agregar antes de " + cad1.charAt(i));
+                            n = minMov(cad1.substring(0, i) +cad2.substring(i, i +1)+ cad1.substring(i),
+
+                                cad2, menor, i + 1, mov + 1 );
+                            System.out.println("n = " + n  + "\nMenor = + " + menor);
+                            if(n < menor)
+
+                                menor = n;
+
+                        //}
+
+                    //}
+
+                }
+
             }
+
         }
+
         return menor;
+
     }
+
     public static void main(String[] args) {
-        System.out.println(minMov("dia", "diana"));
+
+        System.out.println(minMov("DIANAsdfgh", "diana"));
+
     }
-}
