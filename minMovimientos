@@ -8,11 +8,13 @@ public class Ejercicios {
     
     private static int minMov(String cad1, String cad2, int menor, int i, int mov){
         if(mov < menor){
+            System.out.println(mov + " menor a " + menor);
             if(i == cad2.length()){
                 menor = mov;
                 return menor;
             }
             else{
+                System.out.println("i = " + i);
                 if(cad1.charAt(i) == cad2.charAt(i))
                    return minMov(cad1, cad2, menor, i + 1, mov);
                 else{
@@ -37,7 +39,7 @@ public class Ejercicios {
                 }
             }
         }
-        return mov;
+        return menor;
     }
     public static void main(String[] args) {
         System.out.println(minMov("dia", "diana"));
