@@ -1,2 +1,24 @@
 public class Ejercicios{
-public String permutaciones(String cadena){
+public static String permutar (String cadena){
+        StringBuilder res = new StringBuilder();
+        StringBuilder guarda = new StringBuilder();
+        return permutar(res, cadena, guarda);
+    }
+    
+    private static String permutar(StringBuilder res, String cadena, StringBuilder guarda){
+        for(int i =0; i < cadena.length(); i++){
+            guarda.append(cadena.charAt(i));
+            String palabra = cadena.substring(0,i) + cadena.substring(i + 1);
+            permutar(res, palabra, guarda);
+            System.out.println("guarda: " + guarda.toString());
+        }
+        res.append(guarda);
+        return res.toString();
+    }
+
+    public static void main(String[] args) {
+
+        //System.out.println(minMov("324", "trew9"));
+        System.out.println("Permutaciones: \n" + permutar("1234"));
+    }
+ }
