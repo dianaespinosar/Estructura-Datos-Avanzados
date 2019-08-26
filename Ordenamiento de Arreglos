@@ -1,0 +1,69 @@
+package ejercicios;
+
+public class ordenamiento {
+
+    public static int[] ordenarArreglo(int[] arr) {
+
+        for (int j = 0; j < arr.length - 1; j++) {
+            int menor = arr[j];
+            int ind = j;
+            for (int i = j + 1; i < arr.length; i++) {
+                if (menor > arr[i]) {
+                    menor = arr[i];
+                    ind = i;
+                    int auxi = arr[j];
+                    arr[j] = arr[i];
+                    arr[i] = auxi;
+                }
+            }
+        }
+        return arr;
+    }
+    
+    public static int[] ordenarLapsosArreglo(int[] arr){
+        for(int i = 0; i < arr.length - 1; i++){
+            if(arr[i] > arr[i + 1]){
+                int aux = arr[i + 1];
+                int j = i + 1;
+                while(j > 0 && arr[j - 1] > aux ){
+                    arr[j] = arr[j - 1];
+                    j--;
+                }
+                arr[j] = aux;                  
+            }
+        }
+        return arr;
+    }
+    public static int[] ordenarPorParejas(int[] arr) {
+       
+        boolean cambio = true;
+        while (cambio) {
+            cambio = false;
+            for (int i = 0; i < arr.length - 1; i++) {
+                if (arr[i] > arr[i + 1]) {
+                    int aux = arr[i + 1];
+                    arr[i + 1] = arr[i];
+                    arr[i] = aux;
+                    cambio = true;
+                }
+            }
+        }
+        return arr;
+    }
+    
+    public static String imprimeArray(int[] arr) {
+        StringBuilder res = new StringBuilder();
+        res.append("{");
+        for (int i = 0; i < arr.length; i++) {
+            res.append(arr[i]).append("  ");
+        }
+        res.append("}");
+        return res.toString();
+    }
+
+    public static void main(String[] args) {
+        int[] arr = new int[]{25, 2000, 3, 33, -1, 666, 51, 777, 10};
+        System.out.println(imprimeArray(arr));
+        System.out.println(imprimeArray(ordenarPorParejas(arr)));
+    }
+}
