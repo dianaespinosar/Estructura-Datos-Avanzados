@@ -66,4 +66,56 @@ public class ordenamiento {
         System.out.println(imprimeArray(arr));
         System.out.println(imprimeArray(ordenarPorParejas(arr)));
     }
+    
+    public static int[] ordenaRecursiva(int[] arr){
+        return ordenaRecursiva(arr, 0, arr.length - 1);
+    } 
+    
+    
+    
+    //Ordena y luego agrega al arreglo
+    private static int[] ordenaRecursiva(int[] arr, int inf, int sup){
+        //System.out.println(imprimeArray(arr));
+        //System.out.println("inferior = " + inf + "\nsuperior = " + sup);
+        if (inf < sup) {
+
+            int base = arr[inf];
+            //System.out.println("base = " + base);
+            int[] menores = new int[sup - inf + 1];
+            int tMe = 0;
+            int[] mayores = new int[sup - inf + 1];
+            int tMa = 0;
+            for (int i = inf + 1; i <= sup; i++) {
+                if (arr[i] <= base) {
+                    menores[tMe] = arr[i];
+                    //System.out.println("Menores agrega: " + arr[i]);
+                    tMe++;
+                } else {
+                    mayores[tMa] = arr[i];
+                    //System.out.println("Mayores agrega: " + arr[i]);
+                    tMa++;
+                }
+            }
+            menores = ordenaRecursiva(menores, 0, tMe - 1);
+            mayores = ordenaRecursiva(mayores, 0, tMa - 1);
+            //System.out.println("tMe = " + tMe + "\ntMa = " + tMa);
+            
+            for (int j = 0; j < tMe + tMa + 1; j++) {
+                if (j < tMe) {
+                    arr[j] = menores[j];
+                } else if (j == tMe) {
+                    arr[j] = base;
+                } else {
+                    
+                    arr[j] = mayores[j - tMe - 1]; 
+                }
+            }
+        }
+        return arr;
+    
+    }
+    
+    
+    
+    
 }
