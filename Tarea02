@@ -1,12 +1,24 @@
-//Lectura de archivo
+//Lectura por comando
 import sys
+n = len(sys.argv)
+r = (n - 1)/2
+print ("Son %d parejas:" % (r))
+for k in range (int(r)):
+	a = int(sys.argv[2*k + 1])
+	b = int(sys.argv[2 * (k + 1)])
+	c = a + b
+	print ("Suma de la pareja %d: %d" % (k+1, c))
 
-file = open(sys.argv[1])
-n = int(file.readlines()
-print ("Son %d parejas", % n/2)
-for x in (0, n)
-	a = int(file.read())
-	b = int(file.read())
-	print ("La suma de la pareja ", x, " es ", (a+b))
-	print ("La suma de la pareja %d es %d", %(x, (a+b)
-file.
+//Lectura de archivo
+import sys 
+
+file = open (sys.argv[1]) 
+n = int(file.readline())
+
+print ("Son %d parejas" % (n)) 
+
+for x in range (0, n):
+	a = int(file.readline())
+	b = int(file.readline())
+	print ("La suma de la pareja %d es %d" %(x + 1, (a+b)))
+file.close()
