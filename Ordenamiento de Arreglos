@@ -118,4 +118,32 @@ public class ordenamiento {
     
     
     
+    
+    
+    public static int[] ordenarRecursivaSwitch(int[] arr) {
+        return ordenarRecursivaSwitch(arr, 0, arr.length - 1);
+    }
+
+    private static int[] ordenarRecursivaSwitch(int[] arr, int inf, int sup) {
+        if (inf < sup) {
+            int iBase = inf;
+            int base = arr[inf];
+            int aux;
+            for(int i = inf + 1; i <= sup; i++){
+                if(arr[i] < base){
+                    aux = arr[iBase + 1];
+                    arr[iBase] = arr[i];
+                    arr[i] = aux;
+                    arr[iBase + 1] = base;
+                    iBase++;
+                }
+            }
+            arr = ordenarRecursivaSwitch(arr, inf, iBase - 1);
+            arr = ordenarRecursivaSwitch(arr, iBase + 1, sup);
+        }
+        
+        return arr;
+    }
+    
+    
 }
