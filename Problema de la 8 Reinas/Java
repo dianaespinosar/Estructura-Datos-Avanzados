@@ -1,0 +1,38 @@
+public static int[] posicionReinas(){
+        int[] posiciones = {0,0,0,0,0,0,0,0};
+        return posicionReinas(posiciones, 0);
+    } 
+    
+    private static int[] posicionReinas(int[] pos, int i2){
+        if(i2 < 8){
+            int j;
+            for( j = 1; j < 9; j++){
+                int i1 = 0;
+                while(i1 < i2 && pos[i1] != j && Math.abs(i1 - i2) != Math.abs(pos[i1] - j)){
+                    i1++;
+                }
+                if(i1 == i2){
+                    pos[i2] = j;
+                    if(posicionReinas(pos, i2 + 1)[i2] != 0 ){
+                        return pos;
+                    }
+                }
+            }
+            if(j == 9){
+                pos[i2 - 1] = 0;
+                return pos;
+            }
+        }
+        return pos;
+    }
+    public static String imprimeArreglo(int [] arr){
+        StringBuilder res = new StringBuilder();
+        for(int i = 0; i < arr.length; i++)
+            res.append(arr[i]).append(" ");
+        return res.toString();
+    }
+
+    public static void main(String[] args) {
+        System.out.println(imprimeArreglo(posicionReinas()));
+    }
+    
