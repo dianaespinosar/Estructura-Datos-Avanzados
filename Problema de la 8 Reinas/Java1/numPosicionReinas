@@ -1,0 +1,42 @@
+    public static int numPosicionReinas(){
+        int[] posiciones = {0,0,0,0,0,0,0,0};
+        return Math.abs(numPosicionReinas(posiciones, 0, 0));
+    }
+    
+    private static int numPosicionReinas(int[] pos, int i2, int sol){
+        
+         if(i2 < 8){
+            
+            int j;
+            for( j = 1; j < 9; j++){
+                
+                int i1 = 0;
+                while(i1 < i2 && pos[i1] != j && Math.abs(i1 - i2) != Math.abs(pos[i1] - j)){
+                    i1++;
+                }
+                
+                if(i1 == i2){
+                    pos[i2] = j;
+                    
+                    
+                    sol = Math.abs(numPosicionReinas(pos, i2 + 1, sol));
+                    
+                    pos[i2] = 0;
+                    
+                }
+                
+            }
+            if(j == 9){
+                
+                return -sol;
+            }
+        }
+        System.out.println("Encontramos una solución");
+        System.out.println(imprimeArreglo(pos));
+        return sol + 1;
+    }
+    
+     public static void main(String[] args) {
+        
+        System.out.println(numPosicionReinas());
+    }
