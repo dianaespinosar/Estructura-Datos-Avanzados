@@ -1,0 +1,9 @@
+public static int[] mergeSort(int[] arr){
+        return mergeSort(arr, 0, arr.length - 1);
+    }
+    
+    private static int[] mergeSort(int []arr, int inf, int sup){
+        int mit = (sup - inf ) / 2 + 1;
+        if(inf == sup){
+            
+        }
