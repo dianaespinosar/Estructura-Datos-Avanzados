@@ -1,9 +1,69 @@
-public static int[] mergeSort(int[] arr){
-        return mergeSort(arr, 0, arr.length - 1);
+public static void mergeSort(int[] arr){
+        mergeSort(arr, 0, arr.length - 1);
     }
     
-    private static int[] mergeSort(int []arr, int inf, int sup){
-        int mit = (sup - inf ) / 2 + 1;
-        if(inf == sup){
-            
+    private static void mergeSort(int[] arr, int inf, int sup) {
+        int[] temp;
+        int indice, izq, der;
+        if (inf == sup) {
+
+            return;
         }
+        int tam = sup - inf + 1;
+        int mit = (sup + inf) / 2;
+        temp = new int[tam];
+        
+        mergeSort(arr, inf, mit); 
+        mergeSort(arr, mit + 1, sup);
+        indice = 0;
+        izq = inf;
+        der = mit + 1;
+        
+       
+        while (indice < tam) {
+             
+            if (izq <= mit && der <= sup) {
+                
+                if (arr[izq] < arr[der]) {
+                    
+                    temp[indice] = arr[izq];
+                    izq++;
+                } else {
+                   
+                    temp[indice] = arr[der];
+                    der++;
+                }
+            }
+            else if(izq == mit + 1){
+                
+               temp[indice] = arr[der];
+                der++;
+            }
+            else{   
+                temp[indice] = arr[izq];
+                izq++;
+            }
+            indice++;
+        }
+        for(int i = 0; i < tam; i++){
+            arr[i + inf] = temp[i];
+        }       
+    }
+
+    public static void main(String[] args) {
+        int[] arr = new int[]{25, 2000, 3, 33, -1, 666, 51, 777, 10};
+        System.out.println(imprimeArray(arr));
+        mergeSort(arr);
+        System.out.println(imprimeArray(arr));
+    }
+    
+    
+     public static String imprimeArray(int[] arr) {
+        StringBuilder res = new StringBuilder();
+        res.append("{");
+        for (int i = 0; i < arr.length; i++) {
+            res.append(arr[i]).append("  ");
+        }
+        res.append("}");
+        return res.toString();
+    }
