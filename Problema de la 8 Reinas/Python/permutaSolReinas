@@ -47,3 +47,4 @@ def comparar (p,d,n)
     while(i < n && igual):
         if d[i] != p[i]:
             igual = false
+    return igual;
