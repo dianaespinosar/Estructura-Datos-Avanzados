@@ -33,3 +33,17 @@ def giraTablero(p, n):
         gira[p[i]] = 9 - i;
         
     print(str(gira[1:]))
+    
+def refexion(p,n):
+    reflexion = [0] * (n + 1 )
+    for i in range (1, n + 1):
+        reflexion[i] = p[9 - i];
+        
+    print(str(reflexion[1:]))
+
+def comparar (p,d,n)
+    i = 0;
+    igual = true
+    while(i < n && igual):
+        if d[i] != p[i]:
+            igual = false
