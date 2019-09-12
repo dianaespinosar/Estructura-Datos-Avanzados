@@ -1,0 +1,85 @@
+
+def permutaSolReinas(p,disp,k,n, c, mat):
+    if k > n:
+        if(c[0] == 0):
+            for k in range (1,n+1):
+                mat[0][k] = p[k];
+            c[0] = c[0] + 1
+            print(str(c)  + " → " + str(p[1:]))
+        else:
+            j = 0;
+            noRepetida = False;
+            while j < len(mat) and noRepetida == False:
+                if comparar(giraTablero(p,n),mat[j],n) == True:
+                    noRepetida = True;
+                    break;
+                if  comparar (giraTablero(giraTablero(p,n), n),mat[j],n) == True:
+                    noRepetida = True;
+                    break;
+                if comparar (giraTablero(giraTablero(giraTablero(p,n),n),n),mat[j],n) == True:
+                    noRepetida = True;
+                    break;
+                if comparar (reflexion(p,n),mat[j],n) == True:
+                    noRepetida = True;
+                    break;
+                if comparar (reflexion(giraTablero(p,n),n),mat[j],n) == True:
+                    noRepetida = True;
+                    break;
+                if comparar (reflexion(giraTablero(giraTablero(p,n), n),n),mat[j],n) == True: 
+                    noRepetida = True;
+                    break;
+               
+                if comparar (reflexion(giraTablero(giraTablero(giraTablero(p,n),n),n),n),mat[j],n) == True:
+                    noRepetida = True;
+                    break;
+                j = j+1;
+            if(noRepetida == False):
+                        for k in range (1,n+1):
+                            mat[c[0]][k] = p[k];
+                        c[0] = c[0] + 1
+                        print(str(c)  + " → " + str(p[1:]))
+        return mat;
+    else:
+        for i in range (1, n+1):
+            if disp[i] == 1:
+                i1 = 1
+                while i1 < k and abs(i1 - k) != abs(p[i1] - i):
+                    i1 += 1
+                
+                if(i1 == k):
+                    disp[i] = 0
+                    p[k] = i
+                   
+                    mat = permutaSolReinas(p,disp,k+1, n, c,mat)
+                    disp[i] = 1
+                    p[k] = 0
+        return mat;
+                    
+n = 8
+p = [0] * (n+1)
+d = [1] * (n+1)
+c = [0]
+mat = [[0]*9 for i in range(12)]
+
+
+
+def giraTablero(p, n):
+    gira = [0] * (n + 1)
+    for i in range (1, n + 1):
+        gira[p[i]] = 9 - i;    
+    return gira;
+    
+def reflexion(p,n):
+    reflexion = [0] * (n + 1 )
+    for i in range (1, n + 1):
+        reflexion[i] = p[9 - i];
+    return reflexion;
+
+def comparar (p,d,n):
+    i = 0;
+    igual = True;
+    while i < n and igual == True:
+        if d[i] != p[i]:
+            igual = False;
+        i = i + 1;
+    return igual;
