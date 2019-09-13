@@ -1,12 +1,44 @@
-def menorCostoViaje(a,mat):
+def menorCostoViaje(a,mat,mov,k,d):
     n = int(a[0])
-    for i in range (1,n*n + 1):
-        mat[int(i/n)][((i-1)%n)] = int(a[i])
+    mCosto = 0;
+    for i in range (1,n*n +1):
+        mat[int((i-1)/n)][((i-1)%n)] = int(a[i])
+        mCosto = mCosto + int(a[i])
+    return menorCosto(mat,mov,mCosto,k,d)
     
 
-def menorCosto(mat, mov, mCosto):
-    
+def menorCosto(mat, mov, mCosto,k, d):
+    if k == n :
+        if(circuito(mov)):
+            c = 0;
+            for i in range (n):
+                c = mat[i][mov[i]] + c;   
+            return min(c,mCosto);
+        else:
+            return mCosto;
+    else:
+        for i in range (n):
+            if d[i] == 1 and k != i:
+               d[i] = 0
+               mov[k] = i
+               mCosto = menorCosto(mat,mov,mCosto, k+1,d)
+               d[i] = 1
+    return mCosto
 
 n = int(a[0])
 mat = [[0]*n for i in range (n)];
 mov = [0] * n;
+d = [1] * n;
+k = 0;
+
+def circuito(mov):
+    i = 1;
+    sig = mov[0];
+    while sig != 0 and i < len(mov) :
+        sig = mov[sig];
+        i = i+1;
+
+    if i == len(mov):
+        return True;
+    else:
+        return False;
