@@ -8,27 +8,27 @@ def permutaSolReinas(p,disp,k,n, c, mat):
         else:
             j = 0;
             noRepetida = False;
-            while j < len(mat) and noRepetida == False:
-                if comparar(giraTablero(p,n),mat[j],n) == True:
+            while j < len(mat) and not noRepetida :
+                if comparar(giraTablero(p,n),mat[j],n):
                     noRepetida = True;
                     break;
-                if  comparar (giraTablero(giraTablero(p,n), n),mat[j],n) == True:
+                if  comparar (giraTablero(giraTablero(p,n), n),mat[j],n):
                     noRepetida = True;
                     break;
-                if comparar (giraTablero(giraTablero(giraTablero(p,n),n),n),mat[j],n) == True:
+                if comparar (giraTablero(giraTablero(giraTablero(p,n),n),n),mat[j],n):
                     noRepetida = True;
                     break;
-                if comparar (reflexion(p,n),mat[j],n) == True:
+                if comparar (reflexion(p,n),mat[j],n):
                     noRepetida = True;
                     break;
-                if comparar (reflexion(giraTablero(p,n),n),mat[j],n) == True:
+                if comparar (reflexion(giraTablero(p,n),n),mat[j],n):
                     noRepetida = True;
                     break;
-                if comparar (reflexion(giraTablero(giraTablero(p,n), n),n),mat[j],n) == True: 
+                if comparar (reflexion(giraTablero(giraTablero(p,n), n),n),mat[j],n): 
                     noRepetida = True;
                     break;
                
-                if comparar (reflexion(giraTablero(giraTablero(giraTablero(p,n),n),n),n),mat[j],n) == True:
+                if comparar (reflexion(giraTablero(giraTablero(giraTablero(p,n),n),n),n),mat[j],n):
                     noRepetida = True;
                     break;
                 j = j+1;
@@ -42,7 +42,7 @@ def permutaSolReinas(p,disp,k,n, c, mat):
         for i in range (1, n+1):
             if disp[i] == 1:
                 i1 = 1
-                while i1 < k and abs(i1 - k) != abs(p[i1] - i):
+                while p[1] < 5 and i1 < k and abs(i1 - k) != abs(p[i1] - i):
                     i1 += 1
                 
                 if(i1 == k):
