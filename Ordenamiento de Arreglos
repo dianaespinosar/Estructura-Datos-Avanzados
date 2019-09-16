@@ -120,11 +120,11 @@ public class ordenamiento {
     
     
     
-    public static int[] ordenarRecursivaSwitch(int[] arr) {
-        return ordenarRecursivaSwitch(arr, 0, arr.length - 1);
+    public static int[] quickSort(int[] arr) {
+        return quickSort(arr, 0, arr.length - 1);
     }
 
-    private static int[] ordenarRecursivaSwitch(int[] arr, int inf, int sup) {
+    private static int[] quickSort(int[] arr, int inf, int sup) {
         if (inf < sup) {
             int iBase = inf;
             int base = arr[inf];
@@ -138,8 +138,8 @@ public class ordenamiento {
                     iBase++;
                 }
             }
-            arr = ordenarRecursivaSwitch(arr, inf, iBase - 1);
-            arr = ordenarRecursivaSwitch(arr, iBase + 1, sup);
+            arr = quickSort(arr, inf, iBase - 1);
+            arr = quickSort(arr, iBase + 1, sup);
         }
         
         return arr;
